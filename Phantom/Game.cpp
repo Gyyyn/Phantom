@@ -1,8 +1,15 @@
 ﻿#include "Game.h"
 
+////////////////////////////////////////////////////////////
+/// Game:: Contains main game loop and branches off to
+///	all non-engine scripting and tasks.
+////////////////////////////////////////////////////////////
+
+// TODO: move this to a more appropiate location
 const sf::Time Game::TimePerFrame = sf::seconds(1.f / 60.f);
 
 Game::Game():
+	// TODO: dynamic video mode
 	mWindow(sf::VideoMode(1000, 480), "Pew", sf::Style::Close),
 	mPlayer(),
 	mShader(),
@@ -10,6 +17,7 @@ Game::Game():
 	Fonts(),
 	Player()
 {
+	// TODO: dynamic resource loading
 	Textures.LoadResource(Resources::Textures::PlayerModel, "Media/Textures/Player.png");
 	Textures.LoadResource(Resources::Textures::Landscape, "Media/Textures/Space.png");
 	Fonts.LoadResource(Resources::Fonts::IBM, "Media/Fonts/PxPlusIBMVGA8.ttf");
@@ -22,15 +30,15 @@ Game::Game():
 }
 
 void Game::Run() {
-	sf::Clock clock;
-	sf::Time timeSinceLastUpdate = sf::Time::Zero;
+	sf::Clock Clock;
+	sf::Time TimeSinceLastUpdate = sf::Time::Zero;
 
 	while (mWindow.isOpen()) {
-		sf::Time elapsedTime = clock.restart();
-		timeSinceLastUpdate += elapsedTime;
-		while (timeSinceLastUpdate > TimePerFrame)
+		sf::Time elapsedTime = Clock.restart();
+		TimeSinceLastUpdate += elapsedTime;
+		while (TimeSinceLastUpdate > TimePerFrame)
 		{
-			timeSinceLastUpdate -= TimePerFrame;
+			TimeSinceLastUpdate -= TimePerFrame;
 			ProcessEvents();
 			Update(TimePerFrame);
 		}
@@ -69,10 +77,7 @@ void Game::Update(sf::Time deltaTime) {
 	Player.Update((movement * deltaTime.asSeconds()));
 }
 
-void Game::PlayerPhysics(bool isMoving, float TimeMoving) {
-	//Print(std::to_string(TimeMoving));
-}
-
+// TODO: dynamic rendering with Engine::Scene
 void Game::Render() {
 	mWindow.clear();
 	mWindow.draw(mBackground);
@@ -82,6 +87,7 @@ void Game::Render() {
 	mWindow.display();
 }
 
+// TODO: move this to a hud function
 void Game::UpdateStatistics(sf::Time elapsedTime) {
 	mStatisticsUpdateTime += elapsedTime;
 	mStatisticsNumFrames += 1;
@@ -139,6 +145,7 @@ void Game::ProcessEvents() {
 	}
 }
 
+// TODO: replace this with a hud
 void Game::Print(std::string string, float x, float y, int size, sf::Time lenght) {
 	PrintText.setFont(Fonts.GetFont(Resources::Fonts::IBM));
 	PrintText.setCharacterSize(size);
@@ -146,6 +153,7 @@ void Game::Print(std::string string, float x, float y, int size, sf::Time lenght
 	PrintText.setString(string);
 }
 
+// TODO: replace this with a hud
 void Game::Print(std::string string) {
 	PrintText.setFont(Fonts.GetFont(Resources::Fonts::IBM));
 	PrintText.setCharacterSize(50);
@@ -153,7 +161,10 @@ void Game::Print(std::string string) {
 	PrintText.setString(string);
 }
 
+////////////////////////////////////////////////////////////
 /// GAME EVENTS
+///	TODO: replace this with script handling
+////////////////////////////////////////////////////////////
 
 Game::Aircraft::Aircraft(Type type) : eType(type) {
 

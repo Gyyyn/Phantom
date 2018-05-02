@@ -5,7 +5,6 @@
 
 #include "iostream"
 #include "map"
-
 #include "SFML\System.hpp"
 
 class Engine {
@@ -16,7 +15,9 @@ public:
 	static std::map<int, bool, sf::Clock> eClocks;
 
 	////////////////////////////////////////////////////////////
-	/// Time Functions
+	/// Time Functions,
+	/// TODO: make clocks that can be started and accesed
+	///	independent of function.
 	////////////////////////////////////////////////////////////
 
 	class Time {
@@ -45,6 +46,16 @@ public:
 		enum class Screens {
 
 		};
+
+	public:
+		// TODO: everything here.
+		Scene();
+
+		void Change(Screens s);
+		Screens GetCurrent();
+
+	private:
+		Screens sCurrent;
 	};
 
 	////////////////////////////////////////////////////////////
@@ -53,7 +64,7 @@ public:
 
 	class Entity {
 	public:
-		Entity ();
+		Entity();
 
 		void setVelocity(sf::Vector2f velocity);
 		void setVelocity(float vx, float vy);

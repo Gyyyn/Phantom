@@ -21,6 +21,7 @@ Engine is x86 only for now, support for x64 is planned.
 	1. ```/Phantom``` - Source code.
 		1. ```/Libs``` - Libraries (SFML).
 		2. ```/Media``` - Game assets.
+		3. ```/Game``` - Scripting. *SEE TODO LIST.*
 		
 ##Engine Specifications
 
@@ -29,3 +30,7 @@ Engine is x86 only for now, support for x64 is planned.
 The codings style follow the Linux kernel coding specs with the notable exception of CamelCase instead of under_score for variable names.
 
 ###Logical structure.
+
+## TODO List
+
+1. Script Handling for scenes and events *!!!PRIORITY!!!*

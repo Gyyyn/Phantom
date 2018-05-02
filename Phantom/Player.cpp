@@ -1,5 +1,10 @@
 #include "Player.h"
 
+////////////////////////////////////////////////////////////
+/// Player:: contains player handling including input 
+///	etc.
+////////////////////////////////////////////////////////////
+
 Player::Player()
 {
 	PlayerSpeed = 500.f;
@@ -8,6 +13,7 @@ Player::Player()
 	PlayerMass = 10.f;
 }
 
+// Location updater overload
 void Player::Update(sf::Vector2f loc) {
 	pSprite.move(loc);
 
@@ -15,15 +21,19 @@ void Player::Update(sf::Vector2f loc) {
 	pLocation.y = pSprite.getPosition().y;
 }
 
+// Sprite texture updater overload
 void Player::Update(sf::Texture texture) {
 	pTexture = texture;
 	pSprite.setTexture(pTexture);
 }
 
+// Direction updater overloade
 void Player::Update(Controls::Directions d) {
 	pDirection = d;
 }
 
+// Controls updater overload
+// TODO: handle multiple input at once !IMPORTANT!
 void Player::Update(Controls::Actions a) {
 	if (a == Controls::Actions::Stop)
 		pIsMoving = false;

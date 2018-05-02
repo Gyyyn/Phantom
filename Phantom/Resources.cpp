@@ -1,7 +1,11 @@
 #include "Resources.h"
 
-// Holder overloads
+////////////////////////////////////////////////////////////
+/// Resources::, ResourceHolder:: Contains all asset
+///	handling and interaction functions
+////////////////////////////////////////////////////////////
 
+// Texture loader overload
 void ResourceHolder::LoadResource(Resources::Textures id, const std::string& filename) {
 	std::unique_ptr<sf::Texture> texture(new sf::Texture());
 	texture->loadFromFile(filename);
@@ -13,6 +17,7 @@ void ResourceHolder::LoadResource(Resources::Textures id, const std::string& fil
 	mTextureMap.insert(std::make_pair(id, std::move(texture)));
 }
 
+// Font loader overload
 void ResourceHolder::LoadResource(Resources::Fonts id, const std::string& filename) {
 	std::unique_ptr<sf::Font> font(new sf::Font());
 	font->loadFromFile(filename);
@@ -24,13 +29,13 @@ void ResourceHolder::LoadResource(Resources::Fonts id, const std::string& filena
 	mFonts.push_back(std::make_pair(id, std::move(font)));
 }
 
-// Resource gets
-
+// Texture getter overload
 sf::Texture& ResourceHolder::GetTexture(Resources::Textures id) {
 	auto found = mTextureMap.find(id);
 	return *found->second;
 }
 
+// Font getter overload
 sf::Font& ResourceHolder::GetFont(Resources::Fonts id) {
 	int x;
 	for (unsigned int i = 0; i < mFonts.size(); i++) {

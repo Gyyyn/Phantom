@@ -1,5 +1,10 @@
 #include "Engine.h"
 
+////////////////////////////////////////////////////////////
+/// Engine:: Stores all basic data structures and
+/// models used everywhere else in the engine.
+////////////////////////////////////////////////////////////
+
 Engine::Engine()
 {
 }
@@ -14,7 +19,26 @@ void Engine::Log(std::string string) {
 /// menus to gameplay, etc.
 ////////////////////////////////////////////////////////////
 
+Engine::Scene::Scene() {
+
+}
+
+void Engine::Scene::Change(Screens s) {
+
+}
+
+Engine::Scene::Screens Engine::Scene::GetCurrent() {
+	return sCurrent;
+}
+
+////////////////////////////////////////////////////////////
+/// Time Functions,
+/// TODO: make clocks that can be started and accesed
+///	independent of function.
+////////////////////////////////////////////////////////////
+
 Engine::Time::Time() {
+
 }
 
 void Engine::Time::Start() {

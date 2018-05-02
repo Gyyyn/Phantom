@@ -1,4 +1,9 @@
-﻿#include "SFML/Graphics.hpp"
+﻿////////////////////////////////////////////////////////////
+/// Game:: Contains main game loop and branches off to
+///	all non-engine scripting and tasks.
+////////////////////////////////////////////////////////////
+
+#include "SFML/Graphics.hpp"
 
 #include "iostream"
 #include "string"
@@ -18,7 +23,6 @@ private:
 	void Render();
 	void Print(std::string string, float x, float y, int size, sf::Time lenght);
 	void Print(std::string string);
-	void PlayerPhysics(bool isMoving, float TimeMoving);
 private:
 	static const sf::Time TimePerFrame;
 
@@ -39,7 +43,10 @@ private:
 	sf::Text PrintText;
 	sf::Shader mShader;
 
+	////////////////////////////////////////////////////////////
 	/// GAME EVENTS
+	///	TODO: replace this with script handling
+	////////////////////////////////////////////////////////////
 
 	class Aircraft : public Engine::Entity {
 	public:
