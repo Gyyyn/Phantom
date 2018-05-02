@@ -7,6 +7,8 @@ Building is based around Visual Studio for now, this is due to be replaced to a 
 
 Just clone the project and open with VC Community 2017, the rest should take care of itself.
 
+If when debugging it complains about not finding SFML DLLs copy the files in SFML/bin to the active debug folder.
+
 ##Requirements
 
 SFML Version 2.4.2 is required to build. A build of the library is provided in the Libs folder since the official SFML website does not yet provide downloads for VC++ 2017.
