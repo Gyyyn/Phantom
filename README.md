@@ -33,4 +33,6 @@ The codings style follow the Linux kernel coding specs with the notable exceptio
 
 ## TODO List
 
-1. Script Handling for scenes and events *!!!PRIORITY!!!*
+0. Message bus for cross-function information
+1. Screen change control and HUDs
+2. Scripting for game events and maps
