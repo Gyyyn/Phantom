@@ -2,7 +2,7 @@
 
 ## Our Pledge
 
-Making working and well-designed.
+Making working and well-designed code.
 
 ## Our Standards
 
