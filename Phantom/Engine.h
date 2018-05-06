@@ -6,6 +6,8 @@
 #include "iostream"
 #include "map"
 #include "SFML\System.hpp"
+#include "memory"
+#include "vector"
 
 class Engine {
 public:
@@ -74,6 +76,22 @@ public:
 
 	private:
 		sf::Vector2f eVelocity;
+	};
+
+	////////////////////////////////////////////////////////////
+	/// Relay: interfunction messaging bus
+	////////////////////////////////////////////////////////////
+
+	class Relay {
+	public:
+		void Beam(std::string msg);
+		std::string Recieve();
+		std::string Recieve(int id);
+		bool WaitFor(std::string msg);
+
+		//std::map MailLists;
+	private:
+		std::string LastBeamed;
 	};
 };
 

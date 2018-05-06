@@ -92,3 +92,30 @@ sf::Vector2f Engine::Entity::getVelocity() const {
 void Engine::Entity::Draw() {
 	
 }
+
+////////////////////////////////////////////////////////////
+/// Relay: interfunction messaging bus
+////////////////////////////////////////////////////////////
+
+// Sends a message globally
+void Engine::Relay::Beam(std::string msg) {
+	LastBeamed = msg;
+}
+
+// Checks globally for messages
+std::string Engine::Relay::Recieve() {
+	return LastBeamed;
+}
+
+// Check a specific relay list for updates
+std::string Engine::Relay::Recieve(int id) {
+	return LastBeamed;
+}
+
+// Returns true only of a certain message has been relayed
+bool Engine::Relay::WaitFor(std::string msg) {
+	if (LastBeamed == msg)
+		return true;
+	else
+		return false;
+}
