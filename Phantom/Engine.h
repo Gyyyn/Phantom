@@ -3,11 +3,12 @@
 /// models used everywhere else in the engine.
 ////////////////////////////////////////////////////////////
 
+#include "SFML\System.hpp"
 #include "iostream"
 #include "map"
-#include "SFML\System.hpp"
 #include "memory"
 #include "vector"
+#include "Script.h"
 
 class Engine {
 public:
@@ -45,8 +46,10 @@ public:
 	////////////////////////////////////////////////////////////
 
 	class Scene {
+		// TODO: Replace this with scripting
 		enum class Screens {
-
+			Main,
+			Test
 		};
 
 	public:
@@ -84,14 +87,19 @@ public:
 
 	class Relay {
 	public:
+		enum class Lists {
+			Global,
+			Render
+		};
+
 		void Beam(std::string msg);
+		void Beam(Lists i, std::string msg);
 		std::string Recieve();
-		std::string Recieve(int id);
+		std::string Recieve(Lists i);
 		bool WaitFor(std::string msg);
 
-		//std::map MailLists;
 	private:
-		std::string LastBeamed;
+		std::map<Lists, std::unique_ptr<std::string>> LastBeamed;
 	};
 };
 

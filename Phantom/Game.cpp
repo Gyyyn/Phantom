@@ -79,6 +79,7 @@ void Game::Update(sf::Time deltaTime) {
 
 // TODO: dynamic rendering with Engine::Scene
 void Game::Render() {
+
 	mWindow.clear();
 	mWindow.draw(mBackground);
 	mWindow.draw(Player.GetSprite());
