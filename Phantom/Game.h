@@ -30,6 +30,7 @@ private:
 
 	ResourceHolder Textures;
 	ResourceHolder Fonts;
+	ResourceHolder Scripts;
 
 	Player Player;
 

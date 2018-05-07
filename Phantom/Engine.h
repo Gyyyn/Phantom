@@ -8,7 +8,6 @@
 #include "map"
 #include "memory"
 #include "vector"
-#include "Script.h"
 
 class Engine {
 public:

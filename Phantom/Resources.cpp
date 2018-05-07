@@ -29,6 +29,13 @@ void ResourceHolder::LoadResource(Resources::Fonts id, const std::string& filena
 	mFonts.push_back(std::make_pair(id, std::move(font)));
 }
 
+// Script loader overload
+// Todo: replace with script loading
+void ResourceHolder::LoadResource(Resources::Scripts id, const std::string& filename) {
+	auto s = Script::RawLoad(filename);
+	mScriptMain = std::make_pair(id, std::move(s));
+}
+
 // Texture getter overload
 sf::Texture& ResourceHolder::GetTexture(Resources::Textures id) {
 	auto found = mTextureMap.find(id);
@@ -44,4 +51,9 @@ sf::Font& ResourceHolder::GetFont(Resources::Fonts id) {
 	}
 
 	return *mFonts[x].second;
+}
+
+// Script getter overload
+std::string ResourceHolder::GetScript(Resources::Scripts id) {
+	return mScriptMain.second;
 }

@@ -25,6 +25,8 @@ Game::Game():
 	Player.Update(Textures.GetTexture(Resources::Textures::PlayerModel));
 	Player.Update(sf::Vector2f(100.f, 100.f));
 
+	Scripts.LoadResource(Resources::Scripts::Main, "Media/Script/main.phantom");
+
 	mBackground.setTexture(Textures.GetTexture(Resources::Textures::Landscape));
 	mBackground.setPosition(0.f, 0.f);
 }
@@ -32,6 +34,8 @@ Game::Game():
 void Game::Run() {
 	sf::Clock Clock;
 	sf::Time TimeSinceLastUpdate = sf::Time::Zero;
+
+	std::cout << Scripts.GetScript(Resources::Scripts::Main);
 
 	while (mWindow.isOpen()) {
 		sf::Time elapsedTime = Clock.restart();
