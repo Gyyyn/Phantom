@@ -4,6 +4,20 @@
 /// Script:: Script parsing
 ////////////////////////////////////////////////////////////
 
+Script::Script() {
+	PhsNewCommand = "--";
+	PhsEndCommand = ";";
+	PhsExtendCommand = ".";
+	PhsCommandLoad = "Load";
+	PhsCommandLoadExtensions = {
+		"Font",
+		"Script",
+		"Shader",
+		"Texture"
+	};
+
+}
+
 std::string Script::RawLoad(std::string filen) {
 	std::ifstream RawScr(filen);
 	std::string str;

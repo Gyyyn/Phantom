@@ -31,6 +31,14 @@ The codings style follow the Linux kernel coding specs with the notable exceptio
 
 ### Logical structure.
 
+TODO...
+
+## The Phantom Scripting Engine
+
+Phantom uses it's own restrictive scripting language for game designing.
+
+A full documentation of possible interactions with the Phantom engine can be found in PHANTOM_SCRIPT.MD
+
 ## TODO List
 
 0. Message bus for cross-function information
