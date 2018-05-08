@@ -91,6 +91,8 @@ public:
 			Render
 		};
 
+		Relay();
+
 		void Beam(std::string msg);
 		void Beam(Lists i, std::string msg);
 		std::string Recieve();

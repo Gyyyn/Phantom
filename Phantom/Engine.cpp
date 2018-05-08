@@ -98,6 +98,12 @@ void Engine::Entity::Draw() {
 /// Relay: interfunction messaging bus
 ////////////////////////////////////////////////////////////
 
+Engine::Relay::Relay() {
+	std::unique_ptr<std::string> s(new std::string);
+	s->assign("Relay is ready for messages.");
+	LastBeamed.insert(std::make_pair(Lists::Global, std::move(s)));
+}
+
 // Sends a message globally
 void Engine::Relay::Beam(std::string msg) {
 	std::unique_ptr<std::string> s(new std::string);

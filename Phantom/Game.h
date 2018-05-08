@@ -28,6 +28,8 @@ private:
 
 	float SpeedMultiplier;
 
+	Engine::Relay Relay;
+
 	ResourceHolder Textures;
 	ResourceHolder Fonts;
 	ResourceHolder Scripts;
