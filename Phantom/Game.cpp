@@ -25,7 +25,7 @@ Game::Game():
 	Player.Update(Textures.GetTexture(Resources::Textures::PlayerModel));
 	Player.Update(sf::Vector2f(100.f, 100.f));
 
-	Scripts.LoadResource(Resources::Scripts::Main, "Game/Script/main.phantom");
+	//Scripts.LoadResource(Resources::Scripts::Main, "Game/Script/main.phantom");
 
 	mBackground.setTexture(Textures.GetTexture(Resources::Textures::Landscape));
 	mBackground.setPosition(0.f, 0.f);
@@ -34,8 +34,8 @@ Game::Game():
 void Game::Run() {
 	sf::Clock Clock;
 	sf::Time TimeSinceLastUpdate = sf::Time::Zero;
-	std::string LastRelayedMessage = Relay.Recieve();
-	Engine::Log(LastRelayedMessage);
+	//std::string LastRelayedMessage = Relay.Recieve();
+	//Engine::Log(LastRelayedMessage);
 
 	while (mWindow.isOpen()) {
 		// Start deltatime clock
@@ -49,9 +49,9 @@ void Game::Run() {
 			Update(TimePerFrame);
 		}
 
-		if (Relay.Recieve() != LastRelayedMessage) {
+		/*if (Relay.Recieve() != LastRelayedMessage) {
 			Engine::Log(LastRelayedMessage);
-		}
+		}*/
 
 		UpdateStatistics(elapsedTime);
 		Render();

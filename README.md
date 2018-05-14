@@ -3,23 +3,18 @@
 
 ## Building
 
-Building is based around Visual Studio for now, this is due to be replaced to a more universal build system later.
+Building is done through CMake, this means it also works with CLion and Eclipse. Everything is already setup to work out of the box assuming you fulfill the following requirements:
 
-Just clone the project and open with VC Community 2017, the rest should take care of itself.
+* x64 operating system
+* SFML 2.5.0
+* CMake 3.11 or later
 
-If when debugging it complains about not finding SFML DLLs copy the files in SFML/bin to the active debug folder.
-
-## Requirements
-
-SFML Version 2.4.2 is required to build. A build of the library is provided in the Libs folder since the official SFML website does not yet provide downloads for VC++ 2017.
-
-Engine is x86 only for now, support for x64 is planned.
+Build SFML as static and put it somewhere CMake can find and then you're ready to build.
 
 ## Folder Structure
 
 1. ```/``` - You are here.
 	1. ```/Phantom``` - Source code.
-		1. ```/Libs``` - Libraries (SFML).
 		2. ```/Media``` - Game assets.
 		3. ```/Game``` - Scripting. *SEE TODO LIST.*
 		
@@ -37,7 +32,7 @@ TODO...
 
 Phantom uses it's own restrictive scripting language for game designing.
 
-A full documentation of possible interactions with the Phantom engine can be found in PHANTOM_SCRIPT.MD
+A full documentation of possible interactions with the Phantom engine can be found in ```PHANTOM_SCRIPT.MD```
 
 ## TODO List
 

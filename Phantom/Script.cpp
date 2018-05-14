@@ -39,15 +39,27 @@ std::vector<std::string> Script::Load(std::string filen) {
 
 // TODO: extended commands
 std::vector<std::string> Script::Parse(std::string RawLoad) {
-	size_t strStart = 0, strEnd = 0;
-	std::string cmd, PhsNewCommand = "--", PhsEndCommand = ";";
+	size_t strStart = 0, strEnd = 0, strData = 0;
+	std::string cmd,
+		PhsNewCommand = "--",
+		PhsEndCommand = ";",
+		PhsExtendCommand = ".",
+		PhsCommandLoad = "Load",
+		PhsDataAccessCommand = ":";
+	std::vector<std::string> PhsCommandLoadExtensions = {
+		"Font",
+		"Script",
+		"Shader",
+		"Texture"
+	};
 	std::vector<std::string> rtrn;
 
 	for (size_t i = 0; RawLoad.size() != 0; i++) {
 		if (RawLoad != "\n") {
 			strStart = RawLoad.find(PhsNewCommand);
 			strEnd = RawLoad.find(PhsEndCommand);
-			cmd = RawLoad.substr(strStart, strEnd);
+			strData = RawLoad.find(PhsDataAccessCommand);
+			cmd = RawLoad.substr(strData, strEnd);
 			RawLoad.erase(strStart, strEnd + 1);
 			rtrn[i] = cmd;
 		}

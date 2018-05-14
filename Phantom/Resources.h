@@ -34,11 +34,11 @@ public:
 	sf::Texture& GetTexture(Resources::Textures id);
 	sf::Font& GetFont(Resources::Fonts id);
 	// TEMPORARY
-	std::string GetScript(Resources::Scripts id);
+	std::vector<std::string> GetScript(Resources::Scripts id);
 
 private:
 	std::map<Resources::Textures, std::unique_ptr<sf::Texture>> mTextureMap;
 	std::vector<std::pair<Resources::Fonts, std::unique_ptr<sf::Font>>> mFonts;
 	// TEMPORARY
-	std::pair<Resources::Scripts, std::string> mScriptMain;
+	std::pair<Resources::Scripts, std::vector<std::string>> mScriptMain;
 };

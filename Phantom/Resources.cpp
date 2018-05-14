@@ -32,7 +32,7 @@ void ResourceHolder::LoadResource(Resources::Fonts id, const std::string& filena
 // Script loader overload
 // Todo: replace with script loading
 void ResourceHolder::LoadResource(Resources::Scripts id, const std::string& filename) {
-	auto s = Script::RawLoad(filename);
+	auto s = Script::Load(filename);
 	mScriptMain = std::make_pair(id, std::move(s));
 }
 
@@ -54,6 +54,6 @@ sf::Font& ResourceHolder::GetFont(Resources::Fonts id) {
 }
 
 // Script getter overload
-std::string ResourceHolder::GetScript(Resources::Scripts id) {
+std::vector<std::string> ResourceHolder::GetScript(Resources::Scripts id) {
 	return mScriptMain.second;
 }
