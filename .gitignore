@@ -268,3 +268,4 @@ CMakeFiles/
 
 # VSCode
 *.code-workspace
+.vscode

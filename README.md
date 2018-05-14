@@ -36,6 +36,6 @@ A full documentation of possible interactions with the Phantom engine can be fou
 
 ## TODO List
 
-0. Message bus for cross-function information
 1. Screen change control and HUDs
-2. Scripting for game events and maps
+2. Scripting for game events and maps (Ongoing)
+3. Dynamic resource loading

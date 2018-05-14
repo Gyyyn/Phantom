@@ -61,7 +61,7 @@ std::vector<std::string> Script::Parse(std::string RawLoad) {
 			strData = RawLoad.find(PhsDataAccessCommand);
 			cmd = RawLoad.substr(strData, strEnd);
 			RawLoad.erase(strStart, strEnd + 1);
-			rtrn[i] = cmd;
+			rtrn.push_back(cmd);
 		}
 		else
 			RawLoad = "";
