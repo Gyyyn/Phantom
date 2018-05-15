@@ -9,7 +9,6 @@
 
 class Script {
 public:
-
 	Script();
 
 	static std::vector<std::string> Load(std::string filen);

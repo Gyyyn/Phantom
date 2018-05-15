@@ -1,2 +1,4 @@
---LoadResource:Example.png;
---LoadScript:Levels;
+--Load.Resource:Example.png;
+--Load.Script:Levels;
+--Render.GUI:Default;
+--Render.Scene:Debug;

@@ -13,6 +13,12 @@
 	* ```Script``` , to load a script.
 	* ```Shader``` , to load a shader.
 	* ```Texture``` , to load a texture.
+
+## Rendering
+
+1. GUI changes and Scene change are handled with ```Render.*``` where the star can be either:
+	* ```GUI```
+	* ```Scene```
 	
 ### SPECIFICATION ONLY
 

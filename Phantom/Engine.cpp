@@ -21,7 +21,6 @@ void Engine::Log(std::string string) {
 
 // TODO load scenes from script here
 Engine::Scene::Scene() {
-	
 }
 
 void Engine::Scene::Change(Screens s) {
@@ -39,7 +38,6 @@ Engine::Scene::Screens Engine::Scene::GetCurrent() {
 ////////////////////////////////////////////////////////////
 
 Engine::Time::Time() {
-
 }
 
 void Engine::Time::Start() {
@@ -74,7 +72,6 @@ void Engine::Time::Restart() {
 ////////////////////////////////////////////////////////////
 
 Engine::Entity::Entity() {
-
 }
 
 void Engine::Entity::setVelocity(sf::Vector2f velocity) {
@@ -91,7 +88,6 @@ sf::Vector2f Engine::Entity::getVelocity() const {
 }
 
 void Engine::Entity::Draw() {
-	
 }
 
 ////////////////////////////////////////////////////////////

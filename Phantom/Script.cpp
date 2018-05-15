@@ -15,7 +15,6 @@ Script::Script() {
 		"Shader",
 		"Texture"
 	};
-
 }
 
 std::string Script::RawLoad(std::string filen) {

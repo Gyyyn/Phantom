@@ -54,6 +54,7 @@ void Game::Run() {
 		}
 
 		UpdateStatistics(elapsedTime);
+		Relay.Beam("Render.Scene:Debug");
 		Render();
 	}
 }
@@ -63,7 +64,6 @@ void Game::Update(sf::Time deltaTime) {
 
 	if (Player.pIsMoving == true) {
 		switch (Player.pDirection) {
-
 		case Controls::Directions::Top:
 			movement.y -= Player.PlayerSpeed;
 			break;
@@ -90,12 +90,15 @@ void Game::Update(sf::Time deltaTime) {
 
 // TODO: dynamic rendering with Engine::Scene
 void Game::Render() {
-
 	mWindow.clear();
-	mWindow.draw(mBackground);
+	if(Relay.WaitFor("Render.Scene:Debug"))
+		mWindow.draw(mBackground);
+
 	mWindow.draw(Player.GetSprite());
-	mWindow.draw(mStatisticsText);
-	mWindow.draw(PrintText);
+
+	if(Relay.WaitFor("Render.GUI:Default"))
+		mWindow.draw(mStatisticsText);
+
 	mWindow.display();
 }
 
@@ -116,6 +119,7 @@ void Game::UpdateStatistics(sf::Time elapsedTime) {
 	}
 }
 
+//TODO: Replace. Hacky and bad
 void Game::HandlePlayerInput(sf::Keyboard::Key key,
 	bool isPressed) {
 
@@ -177,7 +181,5 @@ void Game::Print(std::string string) {
 /// GAME EVENTS
 ///	TODO: replace this with script handling
 ////////////////////////////////////////////////////////////
-
 Game::Aircraft::Aircraft(Type type) : eType(type) {
-
 }

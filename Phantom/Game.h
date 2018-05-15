@@ -15,6 +15,7 @@ class Game {
 public:
 	void Run();
 	Game();
+
 private:
 	void ProcessEvents();
 	void HandlePlayerInput(sf::Keyboard::Key key, bool isPressed);
@@ -23,6 +24,7 @@ private:
 	void Render();
 	void Print(std::string string, float x, float y, int size, sf::Time lenght);
 	void Print(std::string string);
+
 private:
 	static const sf::Time TimePerFrame;
 
