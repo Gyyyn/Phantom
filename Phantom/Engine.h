@@ -86,21 +86,14 @@ public:
 
 	class Relay {
 	public:
-		enum class Lists {
-			Global,
-			Render
-		};
-
 		Relay();
 
 		void Beam(std::string msg);
-		void Beam(Lists i, std::string msg);
 		std::string Recieve();
-		std::string Recieve(Lists i);
 		bool WaitFor(std::string msg);
 
 	private:
-		std::map<Lists, std::unique_ptr<std::string>> LastBeamed;
+		std::string LastBeamed;
 	};
 };
 

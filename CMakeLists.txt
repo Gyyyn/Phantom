@@ -8,7 +8,7 @@ set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/Phantom)
 
 find_package(SFML REQUIRED COMPONENTS audio graphics window system)
 
-include_directories(Phantom ${SFML_DIR}/../../include)
+include_directories(Phantom Phantom/Engine ${SFML_DIR}/../../include)
 
 add_executable(Phantom
         Phantom/Engine.cpp
@@ -21,6 +21,8 @@ add_executable(Phantom
 		Phantom/Resources.cpp
 		Phantom/Resources.h
 		Phantom/Script.cpp
-		Phantom/Script.h)
+		Phantom/Script.h
+		Phantom/Engine/Console.cpp
+		Phantom/Engine/Console.h)
 		
 target_link_libraries(Phantom sfml-graphics sfml-audio sfml-system sfml-network sfml-window)

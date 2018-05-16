@@ -10,11 +10,14 @@
 
 #include "Resources.h"
 #include "Player.h"
+#include "Engine/Console.h"
 
 class Game {
 public:
 	void Run();
 	Game();
+
+	Engine::Relay Relay;
 
 private:
 	void ProcessEvents();
@@ -25,12 +28,11 @@ private:
 	void Print(std::string string, float x, float y, int size, sf::Time lenght);
 	void Print(std::string string);
 
-private:
 	static const sf::Time TimePerFrame;
 
 	float SpeedMultiplier;
 
-	Engine::Relay Relay;
+	Console mConsole;
 
 	ResourceHolder Textures;
 	ResourceHolder Fonts;
@@ -46,7 +48,7 @@ private:
 	sf::Sprite mPlayer;
 	sf::Sprite mBackground;
 	sf::Text PrintText;
-	sf::Shader mShader;
+	sf::Shader mShader;	
 
 	////////////////////////////////////////////////////////////
 	/// GAME EVENTS
@@ -66,4 +68,3 @@ private:
 		Type eType;
 	};
 };
-

@@ -43,7 +43,6 @@ Engine::Time::Time() {
 void Engine::Time::Start() {
 	if (!IsRunning) {
 		IsRunning = true;
-		
 		Engine::Log("Started a clock.");
 	} else
 		Engine::Log("Tried to start a clock when it was already running.");
@@ -95,42 +94,25 @@ void Engine::Entity::Draw() {
 ////////////////////////////////////////////////////////////
 
 Engine::Relay::Relay() {
-	std::unique_ptr<std::string> s(new std::string);
-	s->assign("Relay is ready for messages.");
-	LastBeamed.insert(std::make_pair(Lists::Global, std::move(s)));
+	LastBeamed = "Relay is ready for messages.";
 }
 
 // Sends a message globally
 void Engine::Relay::Beam(std::string msg) {
-	std::unique_ptr<std::string> s(new std::string);
-	s->assign(msg);
-	LastBeamed.insert(std::make_pair(Lists::Global, std::move(s)));
-}
-
-// Sends a message to a specific list
-void Engine::Relay::Beam(Lists i, std::string msg) {
-	std::unique_ptr<std::string> s(new std::string);
-	s->assign(msg);
-	LastBeamed.insert(std::make_pair(i, std::move(s)));
+	LastBeamed = msg;
+	Engine::Log(msg);
 }
 
 // Checks globally for messages
 std::string Engine::Relay::Recieve() {
-	auto a = LastBeamed.find(Lists::Global);
-	return *a->second;
+	return LastBeamed;
 }
 
-// Check a specific relay list for updates
-std::string Engine::Relay::Recieve(Lists i) {
-	auto a = LastBeamed.find(i);
-	return *a->second;
-}
-
-// Returns true only of a certain message has been relayed
+// Returns true only of a certain message has been relayed and then clear the relay
 bool Engine::Relay::WaitFor(std::string msg) {
-	auto a = LastBeamed.find(Lists::Global);
-	if (*a->second == msg)
+	if (LastBeamed == msg) {
+		LastBeamed = std::string();
 		return true;
-	else
+	} else
 		return false;
 }

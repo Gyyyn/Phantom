@@ -2,13 +2,11 @@
 ### 2D C++ game engine based around SFML
 
 [![Build status](https://ci.appveyor.com/api/projects/status/95qtqeq0q18liajk?svg=true)](https://ci.appveyor.com/project/Gyyyn/phantom)
-
-
 [![CodeFactor](https://www.codefactor.io/repository/github/gyyyn/phantom/badge/master)](https://www.codefactor.io/repository/github/gyyyn/phantom/overview/master)
 
 ## Building
 
-Building is done through CMake, this means it also works with CLion and Eclipse. Everything is already setup to work out of the box assuming you fulfill the following requirements:
+Building is done through CMake, this means it also works with pretty much any IDE. Everything is already setup to work out of the box assuming you fulfill the following requirements:
 
 * x64 operating system
 * SFML 2.5.0
@@ -18,10 +16,9 @@ Build SFML as static and put it somewhere CMake can find and then you're ready t
 
 ## Folder Structure
 
-1. ```/``` - You are here.
-	1. ```/Phantom``` - Source code.
-		2. ```/Media``` - Game assets.
-		3. ```/Game``` - Scripting. *SEE TODO LIST.*
+1. ```/Phantom``` - Source code.
+	2. ```/Media``` - Game assets.
+	3. ```/Game``` - Scripting. *SEE TODO LIST.*
 		
 ## Engine Specifications
 

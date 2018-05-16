@@ -15,7 +15,9 @@ Game::Game():
 	mShader(),
 	Textures(),
 	Fonts(),
-	Player()
+	Player(),
+	mConsole(),
+	Relay()
 {
 	// TODO: dynamic resource loading
 	Textures.LoadResource(Resources::Textures::PlayerModel, "Media/Textures/Player.png");
@@ -45,16 +47,16 @@ void Game::Run() {
 		while (TimeSinceLastUpdate > TimePerFrame) {
 			TimeSinceLastUpdate -= TimePerFrame;
 
+			// Process triggers
+			if (Relay.WaitFor("ToggleDrawConsole")) {
+				mConsole.Trigger("ToggleDrawConsole");
+			}
+
 			ProcessEvents();
 			Update(TimePerFrame);
 		}
 
-		if (Relay.Recieve() != LastRelayedMessage) {
-			Engine::Log(LastRelayedMessage);
-		}
-
 		UpdateStatistics(elapsedTime);
-		Relay.Beam("Render.Scene:Debug");
 		Render();
 	}
 }
@@ -99,6 +101,9 @@ void Game::Render() {
 	if(Relay.WaitFor("Render.GUI:Default"))
 		mWindow.draw(mStatisticsText);
 
+	if(mConsole.Draw)
+		mWindow.draw(mConsole.ConsoleProper);
+
 	mWindow.display();
 }
 
@@ -122,7 +127,6 @@ void Game::UpdateStatistics(sf::Time elapsedTime) {
 //TODO: Replace. Hacky and bad
 void Game::HandlePlayerInput(sf::Keyboard::Key key,
 	bool isPressed) {
-
 	if (key == sf::Keyboard::W || key == sf::Keyboard::Up)
 		Player.Update(Controls::Directions::Top);
 	else if (key == sf::Keyboard::S || key == sf::Keyboard::Down)
@@ -131,8 +135,9 @@ void Game::HandlePlayerInput(sf::Keyboard::Key key,
 		Player.Update(Controls::Directions::Left);
 	else if (key == sf::Keyboard::D || key == sf::Keyboard::Right)
 		Player.Update(Controls::Directions::Right);
+	else if (key == sf::Keyboard::Tilde && isPressed)
+		Relay.Beam("ToggleDrawConsole");
 	else if (key == sf::Keyboard::Q) {
-		Print("Goodbye!", 500.f, 240.f, 50, sf::seconds(0.5));
 		mWindow.close();
 	}
 
