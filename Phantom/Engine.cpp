@@ -99,8 +99,11 @@ Engine::Relay::Relay() {
 
 // Sends a message globally
 void Engine::Relay::Beam(std::string msg) {
-	LastBeamed = msg;
-	Engine::Log(msg);
+	// Make sure we aren't using the relay redundantly
+	if (msg != "" || msg != LastBeamed) {
+		LastBeamed = msg;
+		Engine::Log(msg);
+	}
 }
 
 // Checks globally for messages

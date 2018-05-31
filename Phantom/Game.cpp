@@ -31,6 +31,8 @@ Game::Game():
 
 	mBackground.setTexture(Textures.GetTexture(Resources::Textures::Landscape));
 	mBackground.setPosition(0.f, 0.f);
+
+	mConsole.ConsoleProper.setSize(sf::Vector2f(mWindow.getSize().x, mWindow.getSize().y / 2));
 }
 
 void Game::Run() {
@@ -48,9 +50,24 @@ void Game::Run() {
 			TimeSinceLastUpdate -= TimePerFrame;
 
 			// Process triggers
-			if (Relay.WaitFor("ToggleDrawConsole")) {
+			// TODO: handle triggers more elegantly
+			if (Relay.WaitFor("ToggleDrawConsole"))
 				mConsole.Trigger("ToggleDrawConsole");
-			}
+
+			if (Relay.WaitFor("Die"))
+				mWindow.close();
+			
+			if (Relay.WaitFor("MoveUp"))
+				Player.Update(Controls::Directions::Top);
+
+			if (Relay.WaitFor("MoveDown"))
+				Player.Update(Controls::Directions::Bottom);
+
+			if (Relay.WaitFor("MoveLeft"))
+				Player.Update(Controls::Directions::Left);
+
+			if (Relay.WaitFor("MoveRight"))
+				Player.Update(Controls::Directions::Right);
 
 			ProcessEvents();
 			Update(TimePerFrame);
@@ -124,40 +141,15 @@ void Game::UpdateStatistics(sf::Time elapsedTime) {
 	}
 }
 
-//TODO: Replace. Hacky and bad
-void Game::HandlePlayerInput(sf::Keyboard::Key key,
-	bool isPressed) {
-	if (key == sf::Keyboard::W || key == sf::Keyboard::Up)
-		Player.Update(Controls::Directions::Top);
-	else if (key == sf::Keyboard::S || key == sf::Keyboard::Down)
-		Player.Update(Controls::Directions::Bottom);
-	else if (key == sf::Keyboard::A || key == sf::Keyboard::Left)
-		Player.Update(Controls::Directions::Left);
-	else if (key == sf::Keyboard::D || key == sf::Keyboard::Right)
-		Player.Update(Controls::Directions::Right);
-	else if (key == sf::Keyboard::Tilde && isPressed)
-		Relay.Beam("ToggleDrawConsole");
-	else if (key == sf::Keyboard::Q) {
-		mWindow.close();
-	}
-
-	if (isPressed)
-		Player.Update(Controls::Actions::Move);
-
-	if (!isPressed) {
-		Player.Update(Controls::Actions::Stop);
-	}
-}
-
 void Game::ProcessEvents() {
 	sf::Event event;
 	while (mWindow.pollEvent(event)) {
 		switch (event.type) {
 		case sf::Event::KeyPressed:
-			HandlePlayerInput(event.key.code, true);
+			Relay.Beam(Player.HandleKeyboardInput(event.key.code, true));
 			break;
 		case sf::Event::KeyReleased:
-			HandlePlayerInput(event.key.code, false);
+			Relay.Beam(Player.HandleKeyboardInput(event.key.code, false));
 			break;
 		case sf::Event::Closed:
 			mWindow.close();

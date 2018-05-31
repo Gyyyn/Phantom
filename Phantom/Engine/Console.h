@@ -7,7 +7,6 @@
 class Console {
 public:
 	Console();
-	
 	// Does live functions from Game::Update()
 	void Trigger(std::string action);
 

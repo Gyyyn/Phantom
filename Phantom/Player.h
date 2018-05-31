@@ -32,6 +32,10 @@ public:
 	void Update(Controls::Directions d);
 	void Update(Controls::Actions a);
 
+	// Player actions handling
+	std::string HandleKeyboardInput(sf::Keyboard::Key key, bool isPressed);
+	void HandleMouseInput();
+
 	bool pIsMoving;
 	Controls::Actions pAction;
 	Controls::Directions pDirection;

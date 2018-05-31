@@ -7,6 +7,7 @@
 
 #include "iostream"
 #include "string"
+#include "assert.h"
 
 #include "Resources.h"
 #include "Player.h"
@@ -48,7 +49,7 @@ private:
 	sf::Sprite mPlayer;
 	sf::Sprite mBackground;
 	sf::Text PrintText;
-	sf::Shader mShader;	
+	sf::Shader mShader;
 
 	////////////////////////////////////////////////////////////
 	/// GAME EVENTS
