@@ -56,18 +56,6 @@ void Game::Run() {
 
 			if (Relay.WaitFor("Die"))
 				mWindow.close();
-			
-			if (Relay.WaitFor("MoveUp"))
-				Player.Update(Controls::Directions::Top);
-
-			if (Relay.WaitFor("MoveDown"))
-				Player.Update(Controls::Directions::Bottom);
-
-			if (Relay.WaitFor("MoveLeft"))
-				Player.Update(Controls::Directions::Left);
-
-			if (Relay.WaitFor("MoveRight"))
-				Player.Update(Controls::Directions::Right);
 
 			ProcessEvents();
 			Update(TimePerFrame);
@@ -81,28 +69,18 @@ void Game::Run() {
 void Game::Update(sf::Time deltaTime) {
 	sf::Vector2f movement(0.f, 0.f);
 
-	if (Player.pIsMoving == true) {
-		switch (Player.pDirection) {
-		case Controls::Directions::Top:
-			movement.y -= Player.PlayerSpeed;
-			break;
+	// TODO Make control handling more elegant
+	if(Player.pVirtual[sf::Keyboard::W])
+		movement.y -= Player.PlayerSpeed;
 
-		case Controls::Directions::Bottom:
-			movement.y += Player.PlayerSpeed;
-			break;
+	if(Player.pVirtual[sf::Keyboard::S])
+		movement.y += Player.PlayerSpeed;
 
-		case Controls::Directions::Left:
-			movement.x -= Player.PlayerSpeed;
-			break;
+	if(Player.pVirtual[sf::Keyboard::A])
+		movement.x -= Player.PlayerSpeed;
 
-		case Controls::Directions::Right:
-			movement.x += Player.PlayerSpeed;
-			break;
-
-		default:
-			break;
-		}
-	}
+	if(Player.pVirtual[sf::Keyboard::D])
+		movement.x += Player.PlayerSpeed;
 
 	Player.Update((movement * deltaTime.asSeconds()));
 }
@@ -146,10 +124,10 @@ void Game::ProcessEvents() {
 	while (mWindow.pollEvent(event)) {
 		switch (event.type) {
 		case sf::Event::KeyPressed:
-			Relay.Beam(Player.HandleKeyboardInput(event.key.code, true));
+			Player.pVirtual[event.key.code] = true;
 			break;
 		case sf::Event::KeyReleased:
-			Relay.Beam(Player.HandleKeyboardInput(event.key.code, false));
+			Player.pVirtual[event.key.code] = false;
 			break;
 		case sf::Event::Closed:
 			mWindow.close();

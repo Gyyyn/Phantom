@@ -11,6 +11,13 @@ Player::Player()
 	PlayerForce = 0.f;
 	PlayerAccel = 0.f;
 	PlayerMass = 10.f;
+
+	// Initialize the player's virtual representation with the bound actions.
+	// TODO: Make this process automated
+	pVirtual.insert(std::make_pair(sf::Keyboard::W, false));
+	pVirtual.insert(std::make_pair(sf::Keyboard::A, false));
+	pVirtual.insert(std::make_pair(sf::Keyboard::S, false));
+	pVirtual.insert(std::make_pair(sf::Keyboard::D, false));
 }
 
 // Location updater overload
@@ -40,30 +47,6 @@ void Player::Update(Controls::Actions a) {
 
 	if (a == Controls::Actions::Move)
 		pIsMoving = true;
-}
-
-// TODO: replace this, hackiest shit here.
-std::string Player::HandleKeyboardInput(sf::Keyboard::Key key, bool isPressed) {
-	if (isPressed)
-		Update(Controls::Actions::Move);
-
-	if (!isPressed)
-		Update(Controls::Actions::Stop);
-
-	if (key == sf::Keyboard::W || key == sf::Keyboard::Up)
-		return "MoveUp";
-	else if (key == sf::Keyboard::S || key == sf::Keyboard::Down)
-		return "MoveDown";
-	else if (key == sf::Keyboard::A || key == sf::Keyboard::Left)
-		return "MoveLeft";
-	else if (key == sf::Keyboard::D || key == sf::Keyboard::Right)
-		return "MoveRight";
-	else if (key == sf::Keyboard::Tilde && isPressed)
-		return "ToggleDrawConsole";
-	else if (key == sf::Keyboard::Q)
-		return "Die";
-	else
-		return "";
 }
 
 // TODO: this

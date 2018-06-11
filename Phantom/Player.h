@@ -32,10 +32,6 @@ public:
 	void Update(Controls::Directions d);
 	void Update(Controls::Actions a);
 
-	// Player actions handling
-	std::string HandleKeyboardInput(sf::Keyboard::Key key, bool isPressed);
-	void HandleMouseInput();
-
 	bool pIsMoving;
 	Controls::Actions pAction;
 	Controls::Directions pDirection;
@@ -52,4 +48,7 @@ public:
 	sf::Vector2f pLocation;
 	sf::Texture pTexture;
 	sf::Sprite pSprite;
+
+	// Virtual representation of the player's actions
+	std::map<sf::Keyboard::Key, bool> pVirtual;
 };
